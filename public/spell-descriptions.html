@@ -405,13 +405,22 @@ var SpellCompendium = { spells : [] };
 function dataPull () {
 	var $listElement;
 	$spellDOM.each(function ( index) {
+		SpellCompendium.spells[index] = new Object;
 		// console.log(this);
 		// console.log($(this).attr('class'));
-		$listElement = $('.' + $(this).attr('class') + ' li');
-		console.log($listElement.attr('class'));
+		$listElement = $('.' + $(this).attr('class') + '>li');
+		// console.log(index);
+		// console.log($(this).attr('class'));
+		$listElement.each(function ( listIndex ) {
+			SpellCompendium.spells[index][$(this).attr('class')] = $(this).html(); 
+			// console.log(index + ' ' + listIndex);
+			// console.log($(this).attr('class'));
+			// console.log(SpellCompendium.spells[index][$(this).attr('class')]);
+			// console.log(' ');
+		});
 		// SpellCompendium.spells[index][$listElement.attr('class')] = $listElement.html();
 	});
-	// console.log(SpellCompendium);
+	console.log(SpellCompendium);
 }
 
 $(document).ready(function() {
